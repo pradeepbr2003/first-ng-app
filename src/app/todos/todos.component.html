@@ -1,0 +1,21 @@
+@if (!isLoaded()) {
+<div>Loading..............</div>
+}@else {
+<form>
+        <p>
+                <label>Search Todos</label>
+                <input name="searchTerm" [(ngModel)]="searchTerm" type="text"
+                        placeholder="Type in to search todos" />
+        </p>
+
+</form>
+<p>{{title}}</p>
+
+}
+
+@for (todo of todoItems() | filterTodos : searchTerm(); track todo.id) {
+<div appHighlightCompletedTodo [isCompleted]="todo.completed">
+        <input type="checkbox" [id]="todo.id" [checked]="todo.completed" (change)="todoClicked(todo)" />
+        <label [id]="todo.userId">{{todo.title | uppercase }}</label>
+</div>
+}
