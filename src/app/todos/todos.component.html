@@ -1,0 +1,10 @@
+@if (!todoItems().length) {
+<div>Loading..............</div>
+}
+
+<p>{{title}}</p>
+
+@for (todo of todoItems(); track todo.id) {
+<div><input type="checkbox" id="{{todo.id}}" value="{{todo.completed}}" /> <label
+        id="{{todo.userId}}">{{todo.title}}</label></div>
+}

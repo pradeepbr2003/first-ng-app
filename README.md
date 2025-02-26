@@ -1,3 +1,9 @@
+Please follow **https://angular.dev/tutorials/first-app** to download node js and install npm
+
+npm install -g @angular/cli
+
+Watch this video to develop this application:- https://www.youtube.com/watch?v=oUmVFHlwZsI
+
 # FirstNgApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
