@@ -10,5 +10,5 @@ import { CounterComponent } from '../components/counter/counter.component';
 })
 export class HomeComponent {
   title = signal('Welcome to my first-ng-app');
-  message = signal('Hello World program!')
+  message = signal('Passing message from home to greeting component!')
 }
