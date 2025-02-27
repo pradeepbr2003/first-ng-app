@@ -1,11 +1,13 @@
+import { UpperCasePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { catchError } from 'rxjs';
+import { HighlightCompletedTodoDirective } from '../directives/highlight-completed-todo.directive';
 import { Todo } from '../model/todos.type';
 import { TodosService } from '../services/todos.service';
 
 @Component({
   selector: 'app-todos',
-  imports: [],
+  imports: [HighlightCompletedTodoDirective, UpperCasePipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
@@ -14,6 +16,11 @@ export class TodosComponent implements OnInit {
 
   todoService = inject(TodosService);
   todoItems = signal<Array<Todo>>([]);
+  isLoaded = signal<boolean>(false);
+
+  todoClicked(todo: Todo) {
+    todo.completed = !todo.completed;
+  }
 
   ngOnInit(): void {
     this.todoService.getTodosFromApi().pipe(catchError(err => {
@@ -21,6 +28,7 @@ export class TodosComponent implements OnInit {
       throw err;
     })).subscribe((todos) => {
       this.todoItems.set(todos);
+      this.isLoaded.set(true);
     });
   }
 }
